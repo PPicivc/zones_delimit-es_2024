@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         #map {
-            width: 1172px;
-            height: 856px;
+            width: 1527px;
+            height: 835px;
         }
         </style>
         <title>Zones Délimitées 2024 (sous réserve d'officialisation par arrêté préfectoral)</title>
@@ -36,21 +36,6 @@
         <script src="data/PrimtredesurveillanceZonesDlimites2024_2.js"></script>
         <script src="data/ZonedeluttespcifiquecontrelevecteurdelaFD_3.js"></script>
         <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-
-            if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#ffff00',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 1
-              });
-            }
-        }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:9
         })
@@ -78,14 +63,6 @@
         layer_GoogleSatellite_0;
         map.addLayer(layer_GoogleSatellite_0);
         function pop_CommunesAOCChampagne_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Commune</th>\
@@ -105,7 +82,7 @@
                 lineJoin: 'bevel',
                 weight: 1,
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_CommunesAOCChampagne_1');
@@ -113,7 +90,7 @@
         map.getPane('pane_CommunesAOCChampagne_1').style['mix-blend-mode'] = 'normal';
         var layer_CommunesAOCChampagne_1 = new L.geoJson(json_CommunesAOCChampagne_1, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_CommunesAOCChampagne_1',
             layerName: 'layer_CommunesAOCChampagne_1',
             pane: 'pane_CommunesAOCChampagne_1',
@@ -123,14 +100,6 @@
         bounds_group.addLayer(layer_CommunesAOCChampagne_1);
         map.addLayer(layer_CommunesAOCChampagne_1);
         function pop_PrimtredesurveillanceZonesDlimites2024_2(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Commune</th>\
@@ -172,14 +141,6 @@
         bounds_group.addLayer(layer_PrimtredesurveillanceZonesDlimites2024_2);
         map.addLayer(layer_PrimtredesurveillanceZonesDlimites2024_2);
         function pop_ZonedeluttespcifiquecontrelevecteurdelaFD_3(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Commune</th>\
